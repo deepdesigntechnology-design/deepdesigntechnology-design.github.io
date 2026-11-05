@@ -1,0 +1,336 @@
+@import url("https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Vazirmatn:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #f3ebe0;
+  --color-paper: #faf6f0;
+  --color-surface: #e8dccb;
+  --color-ink: #1a120e;
+  --color-muted: #6b5b4f;
+  --color-subtle: #8a7a6d;
+  --color-leather: #6e3f2b;
+  --color-leather-deep: #3d2418;
+  --color-border: #d4c4b0;
+  --color-line: #c9b59a;
+  --color-warn: #8c3b2a;
+  --font-sans: "Vazirmatn", ui-sans-serif, system-ui, sans-serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --shadow-soft: 0 1px 2px color-mix(in oklab, var(--color-ink) 8%, transparent),
+    0 12px 32px color-mix(in oklab, var(--color-leather-deep) 8%, transparent);
+  --duration-quick: 150ms;
+  --duration-fast: 250ms;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    line-height: 1.75;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-leather) 28%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.grain {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.2  0 0 0 0 0.12  0 0 0 0 0.08  0 0 0 0.18 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.prose-fa p + p {
+  margin-top: 1.1em;
+}
+
+.prose-fa li + li {
+  margin-top: 0.4em;
+}
+
+.booklet-stage {
+  counter-reset: leaf;
+  background:
+    radial-gradient(ellipse at top, color-mix(in oklab, var(--color-leather) 16%, var(--color-bg)), var(--color-bg));
+  padding: 1.25rem 0.75rem 3rem;
+}
+
+.sheet {
+  position: relative;
+  width: min(148mm, 100%);
+  min-height: 210mm;
+  margin: 0 auto 1.25rem;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  break-after: page;
+  page-break-after: always;
+  counter-increment: leaf;
+}
+
+.sheet-wm {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.sheet-head,
+.sheet-foot {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 3mm 8mm;
+  font-size: 7.5pt;
+  line-height: 1.4;
+}
+
+.tone-deep .sheet-head { background: var(--color-leather-deep); color: var(--color-paper); }
+.tone-leather .sheet-head { background: var(--color-leather); color: var(--color-paper); }
+.tone-ink .sheet-head { background: var(--color-ink); color: var(--color-paper); }
+.tone-warn .sheet-head { background: var(--color-warn); color: var(--color-paper); }
+
+.sheet-body {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  padding: 7mm 8mm 6mm;
+}
+
+.sheet-foot {
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  background: color-mix(in oklab, var(--color-surface) 65%, var(--color-paper));
+}
+
+.sheet-foot .pg::before {
+  content: counter(leaf, persian);
+}
+
+@counter-style persian {
+  system: numeric;
+  symbols: "۰" "۱" "۲" "۳" "۴" "۵" "۶" "۷" "۸" "۹";
+  suffix: "";
+}
+
+.b-display {
+  font-family: Amiri, Vazirmatn, serif;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.b-h {
+  font-family: Amiri, Vazirmatn, serif;
+  font-size: 16pt;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.b-h2 {
+  font-family: Amiri, Vazirmatn, serif;
+  font-size: 12.5pt;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0.85em 0 0.25em;
+}
+
+.b-kicker {
+  font-size: 8pt;
+  font-weight: 600;
+  color: var(--color-leather);
+}
+
+.b-p {
+  margin: 0.45em 0 0;
+  font-size: 10.25pt;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.b-small {
+  margin: 0.35em 0 0;
+  font-size: 8.5pt;
+  line-height: 1.7;
+  color: var(--color-muted);
+}
+
+.b-ol,
+.b-ul {
+  margin: 0.4em 0 0;
+  padding: 0 1.15em 0 0;
+  font-size: 9.5pt;
+  line-height: 1.7;
+}
+
+.b-ol li + li,
+.b-ul li + li {
+  margin-top: 0.2em;
+}
+
+.b-quote {
+  margin: 0.7em 0 0;
+  border-right: 2px solid var(--color-leather);
+  padding: 0.15em 0.75em 0.15em 0;
+  font-family: Amiri, Vazirmatn, serif;
+  font-size: 11.5pt;
+  line-height: 1.85;
+}
+
+.b-warn {
+  margin: 0.6em 0 0;
+  border: 1px solid color-mix(in oklab, var(--color-warn) 35%, var(--color-border));
+  background: color-mix(in oklab, var(--color-warn) 8%, var(--color-paper));
+  padding: 2.5mm 3mm;
+  font-size: 9pt;
+  line-height: 1.7;
+  color: var(--color-warn);
+}
+
+.b-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.55em;
+  font-size: 8.25pt;
+  line-height: 1.55;
+}
+
+.b-table th,
+.b-table td {
+  border: 1px solid var(--color-border);
+  padding: 1.5mm 2mm;
+  vertical-align: top;
+  text-align: right;
+}
+
+.b-table th {
+  background: var(--color-surface);
+  font-weight: 600;
+  font-size: 8pt;
+}
+
+.b-fig {
+  margin: 0.7em 0 0;
+}
+
+.b-fig svg {
+  width: 100%;
+  height: auto;
+  color: var(--color-leather-deep);
+}
+
+.b-fig-limit svg {
+  display: block;
+  max-height: 54mm;
+  width: auto;
+  margin-inline: auto;
+}
+
+.b-dense {
+  font-size: 8.5pt;
+  line-height: 1.45;
+}
+
+.b-cap {
+  margin-top: 0.25em;
+  font-size: 7.5pt;
+  line-height: 1.5;
+  color: var(--color-muted);
+}
+
+.cover-sheet {
+  min-height: 210mm;
+  color: var(--color-paper);
+  background: var(--color-leather-deep);
+}
+
+.cover-sheet .cover-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.38;
+}
+
+.cover-sheet .cover-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to top, var(--color-leather-deep) 8%, color-mix(in oklab, var(--color-leather-deep) 55%, transparent) 55%, color-mix(in oklab, var(--color-leather-deep) 28%, transparent));
+}
+
+@media print {
+  @page {
+    size: A5;
+    margin: 0;
+  }
+
+  html,
+  body {
+    background: white !important;
+  }
+
+  .booklet-stage {
+    background: white;
+    padding: 0;
+  }
+
+  .sheet,
+  .cover-sheet {
+    width: 148mm;
+    min-height: 210mm;
+    margin: 0;
+    box-shadow: none;
+    overflow: visible;
+    break-after: page;
+    page-break-after: always;
+  }
+}
+

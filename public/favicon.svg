@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" role="img" aria-label="صنعت نوین معرق چرم">
+  <rect width="16" height="16" fill="#1A120E"/>
+  <rect x="4" y="4" width="8" height="8" fill="#6E3F2B"/>
+  <rect x="4" y="4" width="8" height="8" fill="#6E3F2B" transform="rotate(45 8 8)"/>
+  <rect x="6" y="6" width="4" height="4" fill="#FAF6F0"/>
+  <rect x="6" y="6" width="4" height="4" fill="#FAF6F0" transform="rotate(45 8 8)"/>
+  <rect x="7" y="7" width="2" height="2" fill="#1A120E"/>
+</svg>
